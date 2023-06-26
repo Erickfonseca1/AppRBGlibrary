@@ -44,9 +44,8 @@ class FormActivity: AppCompatActivity() {
     private fun save(color: Color?) {
         val name = this.etName.text.toString()
         val red = this.etRed.text.toString().toInt()
-        val green = this.etGreen.toString().toInt()
-        val blue = this.etBlue.toString().toInt()
-
+        val green = this.etGreen.text.toString().toInt()
+        val blue = this.etBlue.text.toString().toInt()
         var newOrUpdatedColor: Color
 
         if (color == null) {

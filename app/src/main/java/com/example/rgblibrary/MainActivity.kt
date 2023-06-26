@@ -8,12 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.constraintlayout.motion.widget.OnSwipe
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
@@ -51,8 +50,6 @@ class MainActivity : AppCompatActivity() {
                     this.palette.add(color)
                     (this.rvPalette.adapter as PaletteAdapter).notifyItemInserted(this.palette.size())
                 } else {
-                    Log.i("COLOR", "id: ${color.id}" + color.toString())
-                    Log.i("PALETTE SIZE", this.palette.size().toString())
 
                     val changeColor = this@MainActivity.palette.get(color.id)
 
@@ -87,8 +84,8 @@ class MainActivity : AppCompatActivity() {
     ) {
         override fun onMove(
             recyclerView: RecyclerView,
-            viewHolder: RecyclerView.ViewHolder,
-            target: RecyclerView.ViewHolder
+            viewHolder: ViewHolder,
+            target: ViewHolder
         ): Boolean {
             (this@MainActivity.rvPalette.adapter as PaletteAdapter).move(viewHolder.adapterPosition, target.adapterPosition)
             return true
@@ -131,7 +128,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        inner class OnClick(var viewHolder: RecyclerView.ViewHolder): DialogInterface.OnClickListener {
+        inner class OnClick(var viewHolder: ViewHolder): DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 (this@MainActivity.rvPalette.adapter as PaletteAdapter).delete(viewHolder.adapterPosition)
             }
