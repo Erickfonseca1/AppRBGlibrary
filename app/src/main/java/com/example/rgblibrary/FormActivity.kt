@@ -59,14 +59,13 @@ class FormActivity: AppCompatActivity() {
         }
 
         val intent = Intent().apply {
-            putExtra("COLOR", color)
+            putExtra("COLOR", newOrUpdatedColor)
             putExtra("NAME", name)
             putExtra("RED", red)
             putExtra("GREEN", green)
             putExtra("BLUE", blue)
         }
         setResult(RESULT_OK, intent)
-
         finish()
     }
 
